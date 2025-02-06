@@ -1,8 +1,29 @@
 local wezterm = require("wezterm")
 local config = wezterm.config_builder()
 
-config.initial_rows = 60
+----- MISC -----
+config.color_scheme = 'iTerm2 Default'
+config.cursor_blink_ease_in = 'Constant'
+config.cursor_blink_ease_out = 'Constant'
+config.default_cursor_style = "BlinkingBlock"
+config.cursor_blink_rate = 500
+
+----- WINDOW -----
+config.initial_rows = 58
 config.initial_cols = 240
+config.window_decorations = "RESIZE"
+config.window_frame = {
+	border_left_width = "0.5cell",
+	border_right_width = "0.5cell",
+	border_bottom_height = "0.2cell",
+	border_top_height = "0.2cell",
+	border_left_color = "#1e293b",
+	border_right_color = "#1e293b",
+	border_bottom_color = "#1e293b",
+	border_top_color = "#1e293b",
+}
+-- config.window_background_opacity = 0.96
+-- config.macos_window_background_blur = 15
 
 ----- FONT -----
 config.font_size = 16
@@ -77,21 +98,6 @@ config.inactive_pane_hsb = {
 	brightness = 0.5,
 }
 
------ WINDOW -----
-config.window_background_opacity = 0.96
-config.macos_window_background_blur = 15
-config.window_decorations = "RESIZE"
-config.window_frame = {
-	border_left_width = "0.5cell",
-	border_right_width = "0.5cell",
-	border_bottom_height = "0.2cell",
-	border_top_height = "0.2cell",
-	border_left_color = "#1e293b",
-	border_right_color = "#1e293b",
-	border_bottom_color = "#1e293b",
-	border_top_color = "#1e293b",
-}
-
 ----- KEYBINDINGS -----
 local act = wezterm.action
 config.keys = {
@@ -110,8 +116,8 @@ config.keys = {
 		mods = "CMD|SHIFT",
 		action = act.SplitVertical({ domain = "CurrentPaneDomain" }),
 	},
-	{ key = "UpArrow", mods = "CTRL", action = wezterm.action.ScrollByLine(-1) },
-	{ key = "DownArrow", mods = "CTRL", action = wezterm.action.ScrollByLine(1) },
+	{ key = "UpArrow", mods = "CMD", action = wezterm.action.ScrollByLine(-1) },
+	{ key = "DownArrow", mods = "CMD", action = wezterm.action.ScrollByLine(1) },
 	{
 		key = "H",
 		mods = "CTRL",
@@ -141,6 +147,21 @@ config.keys = {
 		key = "l",
 		mods = "OPT",
 		action = act.AdjustPaneSize({ "Right", 5 }),
+	},
+	{
+		key = "k",
+		mods = "OPT",
+		action = act.AdjustPaneSize({ "Up", 5 }),
+	},
+	{
+		key = "j",
+		mods = "OPT",
+		action = act.AdjustPaneSize({ "Down", 5 }),
+	},
+	{
+		key = "r",
+		mods = "CMD",
+		action = act.ResetFontAndWindowSize,
 	},
 }
 
