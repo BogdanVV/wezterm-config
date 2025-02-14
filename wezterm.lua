@@ -1,10 +1,13 @@
 local wezterm = require("wezterm")
 local config = wezterm.config_builder()
 
+-- copying with keyboard (in short - CTRL+SHIFT+X - enter the mode)
+-- https://wezterm.org/copymode.html
+
 ----- MISC -----
-config.color_scheme = 'iTerm2 Default'
-config.cursor_blink_ease_in = 'Constant'
-config.cursor_blink_ease_out = 'Constant'
+-- config.color_scheme = "iTerm2 Default"
+config.cursor_blink_ease_in = "Constant"
+config.cursor_blink_ease_out = "Constant"
 config.default_cursor_style = "BlinkingBlock"
 config.cursor_blink_rate = 500
 
@@ -45,6 +48,7 @@ config.show_tab_index_in_tab_bar = true
 config.colors = {
 	tab_bar = {
 		background = "rgba(0,0,0,0)",
+		-- background = "#1e293b",
 	},
 }
 local function tab_title(tab_info)
@@ -116,8 +120,8 @@ config.keys = {
 		mods = "CMD|SHIFT",
 		action = act.SplitVertical({ domain = "CurrentPaneDomain" }),
 	},
-	{ key = "UpArrow", mods = "CMD", action = wezterm.action.ScrollByLine(-1) },
-	{ key = "DownArrow", mods = "CMD", action = wezterm.action.ScrollByLine(1) },
+	{ key = "UpArrow", mods = "CMD", action = act.ScrollByLine(-1) },
+	{ key = "DownArrow", mods = "CMD", action = act.ScrollByLine(1) },
 	{
 		key = "H",
 		mods = "CTRL",
